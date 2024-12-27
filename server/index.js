@@ -7,16 +7,16 @@ import env from 'dotenv'
 const app = express();
 app.use(express.json());
 env.config();
-
 app.use(cors({
-  origin: ["http://localhost:3000"],
+  origin: [process.env.FRONTEND_URL],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   credentials: true,
 }));
+const port = process.env.PORT  || 5000
 
-app.use("/prompt",prompt)
+app.use("/prompt", prompt)
 
-app.listen(9000, () => {
-  console.log("server runing on 9000");
+app.listen(port, () => {
+  console.log("server runing on ", port);
 
 })
